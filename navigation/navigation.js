@@ -7,6 +7,7 @@ import configureStore from '../redux/store';
 
 import AppStack from './AppStack';
 import AuthStack from './AuthStack';
+import BottomTab from '../components/home/BottomTab';
 
 const store = configureStore();
 
@@ -29,7 +30,7 @@ export default function RootNavigation() {
   return (
     <ReduxProvider store={store}>
       <NavigationContainer>
-        {user ? <AppStack /> : <AuthStack />}
+        {user ? <BottomTab /> : <AuthStack />}
       </NavigationContainer>
     </ReduxProvider>
   );

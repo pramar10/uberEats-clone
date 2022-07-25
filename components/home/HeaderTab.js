@@ -7,31 +7,27 @@ const HeaderTab = props => {
   const {logout} = React.useContext(AuthContext);
   return (
     <>
-      <View style={{flexDirection:'row',justifyContent:'space-between' }}>
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+        }}>
         <View>
-        <Image
-          source={require('../../assets/images/user1.jpg')}
-          style={{
-            width: 50,
-            height: 50,
-            resizeMode: 'contain',
-            borderRadius: 100,
-            left: 5,
-          }}
-        />
-        <TouchableOpacity onPress={() => logout()}>
-          <Text
+          <Image
+            source={require('../../assets/images/user1.jpg')}
             style={{
-              color: '#2e64e5',
-              fontSize: 14,
-              fontWeight: '900',
+              width: 50,
+              height: 50,
+              resizeMode: 'contain',
+              borderRadius: 100,
               left: 5,
-            }}>
-            Logout
-          </Text>
-        </TouchableOpacity>
+            }}
+          />
         </View>
-           <Text style={{fontSize:25,top:12,color:'#2e64e5', fontWeight:'800' }} >UberEats</Text>
+        <Text
+          style={{fontSize: 25, top: 12, color: '#2e64e5', fontWeight: '800'}}>
+          Foodies
+        </Text>
         <LottieView
           style={{height: 65}}
           source={require('../../assets/animations/uberEats.json')}

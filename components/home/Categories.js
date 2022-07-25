@@ -30,28 +30,27 @@ const Categories = () => {
   ];
 
   return (
-      <View style={{
-          marginTop:10,
-          backgroundColor:'white',
-          paddingVertical:5,
-          paddingLeft:20
-      }} >
-
-    <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-     {items.map((item,index) =>
-      (
-          <View style={{alignItems: 'center', marginRight: 30}} key={index} >
-        <Image
-          source={item.image}
-          style={{width: 50, height: 40, resizeMode: 'contain'}}
-          />
-        <Text style={{fontSize: 13, fontWeight: '900', color: 'black'}}>
-          {item.text}
-        </Text>
-      </View>
-      ) )  }
-    </ScrollView>
-      </View>
+    <View
+      style={{
+        marginTop: 10,
+        backgroundColor: 'white',
+        paddingVertical: 5,
+        paddingLeft: 20,
+      }}>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        {items.map((item, index) => (
+          <View style={{alignItems: 'center', marginRight: 30}} key={index}>
+            <Image
+              source={item.image}
+              style={{width: 50, height: 40, resizeMode: 'contain'}}
+            />
+            <Text style={{fontSize: 13, fontWeight: '900', color: 'black'}}>
+              {item.text}
+            </Text>
+          </View>
+        ))}
+      </ScrollView>
+    </View>
   );
 };
 

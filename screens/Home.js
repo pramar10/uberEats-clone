@@ -3,9 +3,10 @@ import React from 'react';
 import HeaderTab from '../components/home/HeaderTab';
 import SearchBar from '../components/home/SearchBar';
 import Categories from '../components/home/Categories';
-import RestaurantItems, {localRestaurants} from '../components/home/RestaurantItems';
-import { Divider } from 'react-native-elements';
-import BottomTab from '../components/home/BottomTab';
+import RestaurantItems, {
+  localRestaurants,
+} from '../components/home/RestaurantItems';
+import {Divider} from 'react-native-elements';
 
 const YELP_API_KEY =
   '_IXHxAN41Esb8_kyQU98od_NWVv9JXTUaY4iRQ3lmSN-sqGSKnaktZPqVog9m8q--qDYpb7qn8to9Ha-IMkfyz4yZi_8UO_eA93di7dwGfmGqfDO2shGKne6B5-hYnYx';
@@ -38,19 +39,21 @@ const Home = ({navigation}) => {
   }, [activeTab]);
 
   return (
-    <View style = {{flex:1}} >
+    <View style={{flex: 1}}>
       <View style={{backgroundColor: 'white', top: 5}}>
-        <HeaderTab activeTab = {activeTab} setActiveTab ={setActiveTab} />
+        <HeaderTab activeTab={activeTab} setActiveTab={setActiveTab} />
         <SearchBar />
       </View>
       <ScrollView
-        showsVerticalScrollIndicator={false}>
+        showsVerticalScrollIndicator={false}
+        style={{marginBottom: 60}}>
         <Categories />
-        <RestaurantItems restaurantData={restaurantData} navigation={navigation} />
+        <RestaurantItems
+          restaurantData={restaurantData}
+          navigation={navigation}
+        />
       </ScrollView>
-      <Divider width={0.5}/>
-      <BottomTab/>
-      </View>
+    </View>
   );
 };
 

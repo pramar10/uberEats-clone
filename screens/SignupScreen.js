@@ -12,29 +12,30 @@ import FormInput from '../components/common/FormInput';
 import FormButton from '../components/common/FormButton';
 import SocialButton from '../components/common/SocialButton';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import { AuthContext } from '../navigation/AuthProvider';
-
-
+import {AuthContext} from '../navigation/AuthProvider';
+import LottieView from 'lottie-react-native';
+import Picker from './Picker';
 const SignupScreen = ({navigation}) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
 
-  const {register,user} = useContext(AuthContext);
-
-
+  const {register, user} = useContext(AuthContext);
+  const registerHandler = () => {
+    if (!email || !password || !confirmPassword)
+      alert('Please fill all input section');
+    else register(email, password);
+  };
   return (
     <>
-      <FontAwesome.Button
-        name="long-arrow-left"
-        size={25}
-        backgroundColor="#fff"
-        color="#2e64e5"
-        onPress={() => navigation.navigate('LoginScreen')}
-        style={{marginBottom: 30}}
-      />
-
       <View style={styles.container}>
+        <LottieView
+          style={{height: 120}}
+          source={require('../assets/animations/foodies.json')}
+          autoPlay
+          speed={1}
+          loop={true}
+        />
         <Text style={styles.text}>Create an account</Text>
 
         <FormInput
@@ -63,11 +64,7 @@ const SignupScreen = ({navigation}) => {
           secureTextEntry={true}
         />
 
-        <FormButton
-          buttonTitle="Sign Up"
-            onPress={() => register(email, password) }
-          
-        />
+        <FormButton buttonTitle="Sign Up" onPress={() => registerHandler()} />
 
         <View style={styles.textPrivate}>
           <Text style={styles.color_textPrivate}>
@@ -89,8 +86,8 @@ const SignupScreen = ({navigation}) => {
             <SocialButton
               buttonTitle="Sign Up with Facebook"
               btnType="facebook"
-              color="#4867aa"
-              backgroundColor="#e6eaf4"
+              color="#2d9a5b"
+              backgroundColor="#d7f3e3"
               onPress={() => {}}
             />
 
@@ -128,7 +125,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Kufam-SemiBoldItalic',
     fontSize: 28,
     marginBottom: 10,
-    color: '#051d5f',
+    color: '#278750',
   },
   navButton: {
     marginTop: 15,
@@ -136,7 +133,7 @@ const styles = StyleSheet.create({
   navButtonText: {
     fontSize: 18,
     fontWeight: '500',
-    color: '#2e64e5',
+    color: '#2d9a5b',
     fontFamily: 'Lato-Regular',
   },
   textPrivate: {

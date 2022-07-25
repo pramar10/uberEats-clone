@@ -132,7 +132,8 @@ def reactNativeArchitectures() {
 
 android {
     ndkVersion rootProject.ext.ndkVersion
-
+  compileSdkVersion 27
+    buildToolsVersion "27.0.3"
     compileSdkVersion rootProject.ext.compileSdkVersion
 
     defaultConfig {
@@ -141,7 +142,10 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+
+      targetSdkVersion 27
         buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", isNewArchitectureEnabled().toString()
+         vectorDrawables.useSupportLibrary = true
 
         if (isNewArchitectureEnabled()) {
             // We configure the NDK build only if you decide to opt-in for the New Architecture.

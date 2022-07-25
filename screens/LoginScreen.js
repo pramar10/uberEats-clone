@@ -6,29 +6,38 @@ import {
   Image,
   Platform,
   StyleSheet,
-  ScrollView
+  ScrollView,
+  KeyboardAvoidingView,
 } from 'react-native';
 import FormInput from '../components/common/FormInput';
 import FormButton from '../components/common/FormButton';
 import SocialButton from '../components/common/SocialButton';
-import { AuthContext } from '../navigation/AuthProvider';
-
+import {AuthContext} from '../navigation/AuthProvider';
+import LottieView from 'lottie-react-native';
 
 const LoginScreen = ({navigation}) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
-  const {login,fbLogin,googleLogin} = useContext(AuthContext);
-
+  const {login, googleLogin} = useContext(AuthContext);
+  const loginHandler = () => {
+    if (!email || !password) alert('Please enter email and password!!');
+    else {
+      login(email, password);
+    }
+  };
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Image
-        source={require('../assets/uberEats.png')}
-        style={styles.logo}
+      <LottieView
+        style={{height: 120}}
+        source={require('../assets/animations/foodies.json')}
+        autoPlay
+        speed={1}
+        loop={true}
       />
       <FormInput
         labelValue={email}
-        onChangeText={(userEmail) => setEmail(userEmail)}
+        onChangeText={userEmail => setEmail(userEmail)}
         placeholderText="Email"
         iconType="user"
         keyboardType="email-address"
@@ -38,16 +47,13 @@ const LoginScreen = ({navigation}) => {
 
       <FormInput
         labelValue={password}
-        onChangeText={(userPassword) => setPassword(userPassword)}
+        onChangeText={userPassword => setPassword(userPassword)}
         placeholderText="Password"
         iconType="lock"
         secureTextEntry={true}
       />
 
-      <FormButton
-        buttonTitle="Sign In"
-        onPress={() => login(email, password)}
-      />
+      <FormButton buttonTitle="Sign In" onPress={() => loginHandler()} />
 
       <TouchableOpacity style={styles.forgotButton} onPress={() => {}}>
         <Text style={styles.navButtonText}>Forgot Password?</Text>
@@ -58,8 +64,8 @@ const LoginScreen = ({navigation}) => {
           <SocialButton
             buttonTitle="Sign In with Facebook"
             btnType="facebook"
-            color="#4867aa"
-            backgroundColor="#e6eaf4"
+            color="#2d9a5b"
+            backgroundColor="#d7f3e3"
             // onPress={() => fbLogin()}
           />
 
@@ -88,23 +94,19 @@ export default LoginScreen;
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
-    paddingTop: 10,
-    backgroundColor: '#ffff',
+    backgroundColor: '#fff',
+    zIndex: 1,
   },
-  logo: {
-    height: 200,
-    width: 350,
-    resizeMode: 'cover',
-    marginBottom: 10,
-  },
+
   text: {
     fontFamily: 'Kufam-SemiBoldItalic',
     fontSize: 28,
     marginBottom: 10,
-    color: '#051d5f',
+    color: '#2d9a5b',
   },
   navButton: {
     marginTop: 15,
@@ -115,7 +117,7 @@ const styles = StyleSheet.create({
   navButtonText: {
     fontSize: 18,
     fontWeight: '500',
-    color: '#2e64e5',
+    color: '#2d9a5b',
     fontFamily: 'Lato-Regular',
   },
 });

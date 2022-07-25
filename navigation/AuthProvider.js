@@ -1,6 +1,6 @@
 import React, {createContext, useState} from 'react';
 import auth from '@react-native-firebase/auth';
-import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import {GoogleSignin} from '@react-native-google-signin/google-signin';
 export const AuthContext = createContext();
 
 export const AuthProvider = ({children}) => {
@@ -15,6 +15,7 @@ export const AuthProvider = ({children}) => {
           try {
             await auth().signInWithEmailAndPassword(email, password);
           } catch (e) {
+            console.log(email, password);
             console.log(e);
           }
         },
